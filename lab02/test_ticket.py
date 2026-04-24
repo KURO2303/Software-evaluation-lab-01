@@ -1,26 +1,18 @@
 import unittest
 
-# ==========================================
-# 1. HÀM XỬ LÝ NGHIỆP VỤ (HỆ THỐNG BÁN VÉ)
-# ==========================================
 def xac_dinh_loai_ve(thoi_gian_str):
     """
     Hàm nhận vào chuỗi thời gian định dạng HH:MM và trả về loại vé.
     """
     try:
-        # Tách giờ và phút
         gio, phut = map(int, thoi_gian_str.split(':'))
     except ValueError:
         return "Lỗi định dạng thời gian"
-
-    # Xử lý ngoại lệ thời gian không hợp lệ (V5, V6)
     if gio < 0 or gio > 23 or phut < 0 or phut > 59:
         return "Thời gian không hợp lệ"
 
-    # Quy đổi tất cả ra số phút tính từ 00:00 để dễ so sánh
     tong_phut = gio * 60 + phut
 
-    # Các mốc thời gian quy đổi ra phút
     moc_0930 = 9 * 60 + 30   # 570 phút
     moc_1600 = 16 * 60       # 960 phút
     moc_1930 = 19 * 60 + 30  # 1170 phút
